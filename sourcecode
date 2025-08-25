@@ -1,0 +1,147 @@
+                            Full Source Code (HTML + CSS + JS)
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Online Event Management Platform</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0; padding: 0;
+      background: #f4f4f4;
+    }
+    header {
+      background: #2c3e50;
+      color: white;
+      padding: 1rem;
+      text-align: center;
+    }
+    section {
+      padding: 1rem 2rem;
+      margin-bottom: 2rem;
+      background: white;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    h2 {
+      color: #34495e;
+    }
+    input, select, textarea, button {
+      display: block;
+      margin: 0.5rem 0;
+      padding: 0.5rem;
+      width: 100%;
+      max-width: 500px;
+    }
+    .schedule-item {
+      margin: 0.5rem 0;
+      padding: 0.5rem;
+      background: #ecf0f1;
+      border-left: 5px solid #3498db;
+    }
+    .announcement {
+      background: #ffeaa7;
+      padding: 0.5rem;
+      margin: 0.5rem 0;
+    }
+    .poll-result {
+      margin-top: 0.5rem;
+      font-weight: bold;
+    }
+    @media (max-width: 600px) {
+      section {
+        padding: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>Olivia's Virtual Event</h1>
+</header>
+
+<section id="registration">
+  <h2>Event Registration</h2>
+  <input type="text" id="name" placeholder="Your Name" />
+  <input type="email" id="email" placeholder="Your Email" />
+  <select id="ticket">
+    <option value="general">General Admission</option>
+    <option value="vip">VIP</option>
+  </select>
+  <button onclick="register()">Register</button>
+  <p id="reg-msg"></p>
+</section>
+
+<section id="schedule">
+  <h2>Event Schedule</h2>
+  <div class="schedule-item">10:00 AM – Opening Keynote by Dr. Smith</div>
+  <div class="schedule-item">11:30 AM – Networking Session</div>
+  <div class="schedule-item">1:00 PM – Workshop: Building Engagement</div>
+</section>
+
+<section id="announcements">
+  <h2>Live Announcements</h2>
+  <div class="announcement" id="announcement-box">No announcements yet.</div>
+  <input type="text" id="announcement-input" placeholder="Type announcement..." />
+  <button onclick="sendAnnouncement()">Send Announcement</button>
+</section>
+
+<section id="poll">
+  <h2>Live Poll</h2>
+  <p>How satisfied are you with the event so far?</p>
+  <button onclick="vote('👍')">👍</button>
+  <button onclick="vote('👎')">👎</button>
+  <div class="poll-result" id="poll-result"></div>
+</section>
+
+<section id="feedback">
+  <h2>Session Feedback</h2>
+  <textarea id="feedback-text" rows="4" placeholder="Share your thoughts..."></textarea>
+  <button onclick="submitFeedback()">Submit Feedback</button>
+  <p id="feedback-msg"></p>
+</section>
+
+<script>
+  function register() {
+    const name = document.getElementById('name').value;
+    const email = document.getElementById('email').value;
+    const ticket = document.getElementById('ticket').value;
+    if (name && email) {
+      document.getElementById('reg-msg').textContent = `Thanks for registering, ${name}! Ticket type: ${ticket}`;
+    } else {
+      document.getElementById('reg-msg').textContent = 'Please fill out all fields.';
+    }
+  }
+
+  function sendAnnouncement() {
+    const msg = document.getElementById('announcement-input').value;
+    if (msg) {
+      document.getElementById('announcement-box').textContent = msg;
+      document.getElementById('announcement-input').value = '';
+    }
+  }
+
+  let votes = { '👍': 0, '👎': 0 };
+  function vote(type) {
+    votes[type]++;
+    document.getElementById('poll-result').textContent = `👍: ${votes['👍']} | 👎: ${votes['👎']}`;
+  }
+
+  function submitFeedback() {
+    const feedback = document.getElementById('feedback-text').value;
+    if (feedback) {
+      document.getElementById('feedback-msg').textContent = 'Thanks for your feedback!';
+      document.getElementById('feedback-text').value = '';
+    } else {
+      document.getElementById('feedback-msg').textContent = 'Please enter your feedback.';
+    }
+  }
+</script>
+
+</body>
+</html>
+
+                            
