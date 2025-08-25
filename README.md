@@ -4,6 +4,7 @@
 
 
 event-platform/
+
 ├── client/                # React frontend
 │   ├── src/
 │   │   ├── components/    # Reusable UI components
